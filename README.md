@@ -4,6 +4,24 @@ This project uses Quarkus, the Supersonic Subatomic Java Framework.
 
 If you want to learn more about Quarkus, please visit its website: <https://quarkus.io/>.
 
+## Introduction
+
+As some of you may or may not node, I have been coding for many years, years before AI, GitHub, Quarkus, Spring, and Spring Boot even existed.
+I like to create new projects that allow me to test out new technologies, and it is better I learn the lessons on my own so I don't make those mistakes on a new job.
+
+Well, I was interviewing at a company, and this was a Tech Screen in particular.   I did really well, and it was obvious I knew RESTful API and how to get data to/from the database via an RESTful API in SpringBoot.    However, this company used Quarkus, and I did not get the job, I think because of that one fact.  
+
+So, i took it upon myself to see what the differences were between Quarkus and Spring/SpringBoot, and I get it.   However, I was also driven to see how different Quarkus was from SpringBoot, and I created this project.    I already have a working SpringBoot CRUD application which works with RESTful API's, and I wanted to take as much of those and import it into new Quarkus app.   
+
+I created this Quarkus App with IntelliJ IDEA, and I started moving over the Hibernate Entities first since the database already exists.   Then I moved over the Spring Data JPA repositories and manually converted them to Quarkus Panache Repositories.   I know there is also the concept of an Active Record, but for now I am sticking with the Repository model.   The next step was to Integration and/or Unit Tests where I test the repositories against my development database.   The next steps will be the following:
+ - Business Logic Services and Keeping them Transactional
+ - RESTful API Controllers for CRUD functionality
+ - Creating GraphQL endpoints
+ - HTMX endpoints (optional, not sure if I'll get here)
+ - Use Authentication from KeyCloak (which I have running locally in my Docker Containers)
+
+If I can get through all of this, and I expect I will have a lot of it done soon, then this shows my level of commitment to learning new technologies, and adding yet another tool to my toolbox.   And it will find a nice mention  on my updated resume.    I may not have the professional experience using Quarkus, but have a working app as a demo to show my work should help out a bit ... at least that's my hope!
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
