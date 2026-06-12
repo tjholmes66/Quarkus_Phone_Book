@@ -6,7 +6,7 @@ If you want to learn more about Quarkus, please visit its website: <https://quar
 
 ## Introduction
 
-As some of you may or may not node, I have been coding for many years, years before AI, GitHub, Quarkus, Spring, and Spring Boot even existed.
+As some of you may or may not know, I have been coding for many years, years before AI, GitHub, Quarkus, Spring, and Spring Boot even existed.
 I like to create new projects that allow me to test out new technologies, and it is better I learn the lessons on my own so I don't make those mistakes on a new job.
 
 Well, I was interviewing at a company, and this was a Tech Screen in particular.   I did really well, and it was obvious I knew RESTful API and how to get data to/from the database via an RESTful API in SpringBoot.    However, this company used Quarkus, and I did not get the job, I think because of that one fact.  
