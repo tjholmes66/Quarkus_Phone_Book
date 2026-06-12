@@ -1,0 +1,175 @@
+package com.tomholmes.opensource.phonebook.repository;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import java.util.List;
+
+import com.tomholmes.opensource.phonebook.model.EmailTypeEntity;
+import io.quarkus.test.junit.QuarkusTest;
+import jakarta.inject.Inject;
+import jakarta.transaction.Transactional;
+import org.junit.jupiter.api.Test;
+
+@QuarkusTest
+public class EmailTypeRepositoryTest {
+    @Inject
+    private EmailTypeRepository emailTypeRepository;
+
+    @Test
+    @Transactional
+    public void testEmailTypeSave()
+    {
+        System.out.println("testEmailTypeSave: START");
+        // =================================================================================
+        String emailTypeName = "Test";
+        boolean emailActive = true;
+        String emailTypeDescription = "Test Description";
+        // =================================================================================
+        EmailTypeEntity emailType = new EmailTypeEntity();
+        emailType.setId(1L);
+        emailType.setActive(emailActive);
+        emailType.setDescription(emailTypeDescription);
+        System.out.println("testEmailTypeSave: " + emailTypeName + " " + emailTypeDescription);
+        // ***************************************************************
+        System.out.println("testEmailTypeSave: START: CREATE");
+        emailTypeRepository.persist(emailType);
+        assertNotNull(emailType);
+        System.out.println("testEmailTypeSave: FINISH: CREATE");
+        // =================================================================================
+    }
+
+    @Test
+    @Transactional
+    public void testEmailTypeUpdate()
+    {
+        System.out.println("testEmailTypeUpdate: START");
+        // =================================================================================
+        String emailTypeName = "Test Upd";
+        boolean emailActive = true;
+        String emailTypeDescription = "Test Description Update";
+        // =================================================================================
+        EmailTypeEntity emailType = new EmailTypeEntity();
+        // emailType.setId(0L);
+        emailType.setActive(emailActive);
+        emailType.setDescription(emailTypeDescription);
+        System.out.println("testEmailTypeUpdate: " + emailTypeName + " " + emailTypeDescription);
+        // ***************************************************************
+        System.out.println("testEmailTypeUpdate: START: CREATE");
+        emailTypeRepository.persist(emailType);
+        assertNotNull(emailType);
+        assertEquals(emailActive, emailType.getActive());
+        assertEquals(emailTypeDescription, emailType.getDescription());
+        System.out.println("testEmailTypeUpdate: FINISH: CREATE");
+        // =================================================================================
+    }
+
+    @Test
+    @Transactional
+    public void testEmailTypeRetrieve()
+    {
+        System.out.println("testEmailTypeRetrieve: START");
+        // =================================================================================
+        // =================================================================================
+        // ***************************************************************
+        System.out.println("testEmailTypeRetrieve: START: CREATE");
+        List<EmailTypeEntity> emailTypes = (List<EmailTypeEntity>) emailTypeRepository.findAll().list();
+        assertNotNull(emailTypes);
+        for (EmailTypeEntity emailType : emailTypes)
+        {
+            assertNotNull(emailType.getId());
+            assertNotNull(emailType.getActive());
+            assertNotNull(emailType.getDescription());
+            System.out.println("testEmailTypeRetrieve: emailType=" + emailType.getId() + " " + emailType.getActive() + " " + emailType.getDescription());
+        }
+        System.out.println("testEmailTypeRetrieve: FINISH: CREATE");
+        // =================================================================================
+    }
+
+    @Test
+    @Transactional
+    public void testEmailTypeRetrieveById()
+    {
+        System.out.println("testEmailTypeRetrieveById: START");
+        // =================================================================================
+        // =================================================================================
+        // ***************************************************************
+        System.out.println("testEmailTypeRetrieveById: START: CREATE");
+        EmailTypeEntity emailType = emailTypeRepository.findById(1L);
+        assertNotNull(emailType.getId());
+        assertNotNull(emailType.getActive());
+        assertNotNull(emailType.getDescription());
+        System.out.println("testEmailTypeRetrieveById: emailType=" + emailType.getId() + " " + emailType.getActive() + " " + emailType.getDescription());
+        System.out.println("testEmailTypeRetrieveById: FINISH: CREATE");
+        // =================================================================================
+    }
+
+    @Test
+    @Transactional
+    public void testEmailTypeDelete()
+    {
+        System.out.println("testEmailTypeDelete: START");
+        // =================================================================================
+        long emailTypeId = 4;
+        EmailTypeEntity emailType = emailTypeRepository.findById(emailTypeId);
+        emailTypeRepository.delete(emailType);
+
+        EmailTypeEntity emailTypeGet = emailTypeRepository.findById(emailTypeId);
+        assertEquals(null, emailTypeGet);
+
+        System.out.println("testEmailTypeDelete: FINISH: CREATE");
+        // =================================================================================
+    }
+
+    /*
+    public void X_testEmailTypeEntityByName() {
+    	System.out.println("testEmailTypeEntityByName: START");
+    	// =================================================================================
+    	String interestName1 = "TEST";
+    	String interestUuid1 = "AAA";
+    	String interestPath1 = "ABC/AAA";
+    	EmailTypeEntity interest1 = new EmailTypeEntity();
+    	interest1.setEmailTypeEntityName(interestName1);
+    	interest1.setEmailTypeEntityUuid(interestUuid1);
+    	interest1.setEmailTypeEntityPath(interestPath1);
+    	System.out.println("testEmailTypeEntityByName: " + interestName1 + " " + interestUuid1 + " " + interestPath1);
+    	interest1 = emailTypeRepository.saveEmailTypeEntity(interest1);
+    	assertNotNull(interest1);
+    	// =================================================================================
+    	String interestName2 = "TEST";
+    	String interestUuid2 = "BBB";
+    	String interestPath2 = "ABC/BBB";
+    	EmailTypeEntity interest2 = new EmailTypeEntity();
+    	interest2.setEmailTypeEntityName(interestName2);
+    	interest2.setEmailTypeEntityUuid(interestUuid2);
+    	interest2.setEmailTypeEntityPath(interestPath2);
+    	System.out.println("testEmailTypeEntityByName: " + interestName2 + " " + interestUuid2 + " " + interestPath2);
+    	interest2 = emailTypeRepository.saveEmailTypeEntity(interest2);
+    	assertNotNull(interest2);
+    	// =================================================================================
+    	String interestName3 = "TEST";
+    	String interestUuid3 = "BBB";
+    	String interestPath3 = "ABC/BBB";
+    	EmailTypeEntity interest3 = new EmailTypeEntity();
+    	interest3.setEmailTypeEntityName(interestName3);
+    	interest3.setEmailTypeEntityUuid(interestUuid3);
+    	interest3.setEmailTypeEntityPath(interestPath3);
+    	System.out.println("testEmailTypeEntityByName: " + interestName3 + " " + interestUuid3 + " " + interestPath3);
+    	interest3 = emailTypeRepository.saveEmailTypeEntity(interest3);
+    	assertNotNull(interest2);
+    	// =================================================================================
+    	String interestName = "TEST";
+    	List<EmailTypeEntity> interests = emailTypeRepository.getEmailTypeEntitysByName(interestName);
+    	System.out.println("testEmailTypeEntityByName: interests: size=" + interests.size() );
+    	assertEquals(3,interests.size());
+    	// =================================================================================
+    	System.out.println("testEmailTypeEntityCRUS: START: DELETE");
+    	emailTypeRepository.deleteEmailTypeEntity(interest1);
+    	emailTypeRepository.deleteEmailTypeEntity(interest2);
+    	emailTypeRepository.deleteEmailTypeEntity(interest3);
+    	System.out.println("testEmailTypeEntityCRUS: FINISH: DELETE");
+    	// =================================================================================
+    }
+    */
+
+}

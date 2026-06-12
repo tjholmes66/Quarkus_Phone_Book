@@ -1,0 +1,206 @@
+package com.tomholmes.opensource.phonebook.model;
+
+import java.io.Serializable;
+import java.time.LocalDate;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+// CREATE TABLE `users` (
+// `user_id` int(11) NOT NULL IDENTITY_INCREMENT,
+// `active` tinyint(1) NOT NULL DEFAULT '1',
+// `position_id` int(11) NOT NULL DEFAULT '2',
+// `username` varchar(10) NOT NULL,
+// `password` varchar(15) NOT NULL,
+// `firstname` varchar(45) DEFAULT NULL,
+// `lastname` varchar(45) DEFAULT NULL,
+// `email` varchar(45) NOT NULL,
+// `security_question_1` varchar(145) NOT NULL,
+// `security_answer_1` varchar(45) NOT NULL,
+// `security_question_2` varchar(145) NOT NULL,
+// `security_answer_2` varchar(45) NOT NULL,
+// PRIMARY KEY (`user_id`),
+// UNIQUE KEY `username_uq` (`username`),
+// KEY `fk_users_1` (`position_id`),
+// CONSTRAINT `fk_users_1` FOREIGN KEY (`position_id`) REFERENCES `position` (`position_id`) ON DELETE NO ACTION ON
+// UPDATE NO ACTION
+// ) ENGINE=InnoDB IDENTITY_INCREMENT=2 DEFAULT CHARSET=utf8$$
+
+/**
+ * The persistent class for the Positions database table.
+ * 
+ */
+
+
+@SuppressWarnings("serial")
+@Entity
+@Table(name = "users")
+public class UserEntity implements Serializable
+{
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "user_id")
+    private Long userId;
+
+// `active` tinyint(1) NOT NULL DEFAULT '1',
+    @Column(name = "active")
+    private Boolean active;
+
+// `position_id` int(11) NOT NULL DEFAULT '2',
+// bi-directional many-to-one association to ContactEntity
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "position_id")
+    private PositionEntity position;
+
+// `username` varchar(10) NOT NULL,
+    @Column(name = "username")
+    private String username;
+
+// `password` varchar(15) NOT NULL,
+    @Column(name = "password")
+    private String password;
+
+// `firstname` varchar(45) DEFAULT NULL,
+    @Column(name = "firstname")
+    private String firstName;
+
+// `lastname` varchar(45) DEFAULT NULL,
+    @Column(name = "lastname")
+    private String lastName;
+
+// `lastname` varchar(45) DEFAULT NULL,
+    @Column(name = "email")
+    private String email;
+
+// `security_question_1` varchar(145) NOT NULL,
+    @Column(name = "security_question_1")
+    private String securityQuestion1;
+
+// `security_answer_1` varchar(45) NOT NULL,
+    @Column(name = "security_answer_1")
+    private String securityAnswer1;
+
+// `security_question_2` varchar(245) NOT NULL,
+    @Column(name = "security_question_2")
+    private String securityQuestion2;
+
+// `security_answer_2` varchar(45) NOT NULL,
+    @Column(name = "security_answer_2")
+    private String securityAnswer2;
+
+    @Column(name = "birthdate")
+    private LocalDate birthDate;
+
+
+    public Long getUserId() {
+        return userId;
+    }
+
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public PositionEntity getPosition() {
+        return position;
+    }
+
+    public void setPosition(PositionEntity position) {
+        this.position = position;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getSecurityQuestion1() {
+        return securityQuestion1;
+    }
+
+    public void setSecurityQuestion1(String securityQuestion1) {
+        this.securityQuestion1 = securityQuestion1;
+    }
+
+    public String getSecurityAnswer1() {
+        return securityAnswer1;
+    }
+
+    public void setSecurityAnswer1(String securityAnswer1) {
+        this.securityAnswer1 = securityAnswer1;
+    }
+
+    public String getSecurityQuestion2() {
+        return securityQuestion2;
+    }
+
+    public void setSecurityQuestion2(String securityQuestion2) {
+        this.securityQuestion2 = securityQuestion2;
+    }
+
+    public String getSecurityAnswer2() {
+        return securityAnswer2;
+    }
+
+    public void setSecurityAnswer2(String securityAnswer2) {
+        this.securityAnswer2 = securityAnswer2;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+}
