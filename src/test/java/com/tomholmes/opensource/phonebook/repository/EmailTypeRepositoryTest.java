@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 
 import com.tomholmes.opensource.phonebook.model.EmailTypeEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
@@ -17,7 +17,7 @@ public class EmailTypeRepositoryTest {
     private EmailTypeRepository emailTypeRepository;
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testEmailTypeSave()
     {
         System.out.println("testEmailTypeSave: START");
@@ -27,7 +27,7 @@ public class EmailTypeRepositoryTest {
         String emailTypeDescription = "Test Description";
         // =================================================================================
         EmailTypeEntity emailType = new EmailTypeEntity();
-        emailType.setId(1L);
+        // emailType.setId(1L);
         emailType.setActive(emailActive);
         emailType.setDescription(emailTypeDescription);
         System.out.println("testEmailTypeSave: " + emailTypeName + " " + emailTypeDescription);
@@ -40,7 +40,7 @@ public class EmailTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testEmailTypeUpdate()
     {
         System.out.println("testEmailTypeUpdate: START");
@@ -65,7 +65,7 @@ public class EmailTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testEmailTypeRetrieve()
     {
         System.out.println("testEmailTypeRetrieve: START");
@@ -87,7 +87,7 @@ public class EmailTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testEmailTypeRetrieveById()
     {
         System.out.println("testEmailTypeRetrieveById: START");
@@ -105,7 +105,7 @@ public class EmailTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testEmailTypeDelete()
     {
         System.out.println("testEmailTypeDelete: START");

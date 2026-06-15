@@ -8,9 +8,9 @@ import java.util.List;
 
 import com.tomholmes.opensource.phonebook.model.PositionEntity;
 import com.tomholmes.opensource.phonebook.model.UserEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
@@ -47,7 +47,7 @@ public class UserRepositoryTest {
     private String securityAnswer2 = "Fall River";
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testUserCreate() throws Exception
     {
         System.out.println("testUserCreate: START");
@@ -81,7 +81,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testUserRetrieveAll()
     {
         System.out.println("testUserRetrieveAll: START");
@@ -118,7 +118,7 @@ public class UserRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testUserRetrieveById()
     {
         System.out.println("testUserRetrieveById: START");
@@ -231,7 +231,7 @@ public class UserRepositoryTest {
     */
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testUserRetrieveByUsernamePassword()
     {
         System.out.println("testUserRetrieveByUsernamePassword: START");
@@ -260,7 +260,7 @@ public class UserRepositoryTest {
     }
 
     // @Test
-    //  @Transactional
+    //  @TestTransaction
     public void testUserDelete()
     {
         System.out.println("testUserDelete: START");
@@ -330,7 +330,7 @@ public class UserRepositoryTest {
     */
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testUserUpdate()
     {
         System.out.println("testUserUpdate: START");

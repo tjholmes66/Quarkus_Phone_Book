@@ -6,9 +6,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 
 import com.tomholmes.opensource.phonebook.model.LinkTypeEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
@@ -17,7 +17,7 @@ public class LinkTypeRepositoryTest {
     private LinkTypeRepository linkTypeRepository;
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testLinkTypeSave()
     {
         System.out.println("testLinkTypeSave: START");
@@ -27,7 +27,7 @@ public class LinkTypeRepositoryTest {
         String linkTypeDescription = "Test Description";
         // =================================================================================
         LinkTypeEntity linkType = new LinkTypeEntity();
-        linkType.setId(1L);
+        // linkType.setId(1L);
         linkType.setActive(linkActive);
         linkType.setDescription(linkTypeDescription);
         System.out.println("testLinkTypeSave: " + linkTypeName + " " + linkTypeDescription);
@@ -40,17 +40,16 @@ public class LinkTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testLinkTypeUpdate()
     {
         System.out.println("testLinkTypeUpdate: START");
         // =================================================================================
         String linkTypeName = "Test Upd";
-        boolean linkActive = true;
+        boolean linkActive = false;
         String linkTypeDescription = "Test Description Update";
         // =================================================================================
-        LinkTypeEntity linkType = new LinkTypeEntity();
-        linkType.setId(1L);
+        LinkTypeEntity linkType = linkTypeRepository.findById(1L);
         linkType.setActive(linkActive);
         linkType.setDescription(linkTypeDescription);
         System.out.println("testLinkTypeUpdate: " + linkTypeName + " " + linkTypeDescription);
@@ -65,7 +64,7 @@ public class LinkTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testLinkTypeRetrieve()
     {
         System.out.println("testLinkTypeRetrieve: START");
@@ -87,7 +86,7 @@ public class LinkTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testLinkTypeRetrieveById()
     {
         System.out.println("testLinkTypeRetrieveById: START");
@@ -105,7 +104,7 @@ public class LinkTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testLinkTypeDelete()
     {
         System.out.println("testLinkTypeDelete: START");

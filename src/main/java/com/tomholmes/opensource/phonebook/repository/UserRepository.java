@@ -11,15 +11,15 @@ import java.util.List;
 @ApplicationScoped
 public class UserRepository implements PanacheRepository<UserEntity>
 {
-    List<UserEntity> findUserByUsernameAndPassword(String username, String password) {
+    public List<UserEntity> findUserByUsernameAndPassword(String username, String password) {
         return find("username = ?1 and password = ?2", username, password).list();
     }
 
-    List<UserEntity> findUserByEmail(String email) {
+    public List<UserEntity> findUserByEmail(String email) {
         return find("email", email).list();
     }
 
-    List<UserEntity> findUserByUsername(String username) {
+    public List<UserEntity> findUserByUsername(String username) {
         return find("username", username).list();
     }
 

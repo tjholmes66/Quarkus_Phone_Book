@@ -3,9 +3,9 @@ package com.tomholmes.opensource.phonebook.repository;
 import com.tomholmes.opensource.phonebook.model.ContactEntity;
 import com.tomholmes.opensource.phonebook.model.ContactLinkEntity;
 import com.tomholmes.opensource.phonebook.model.LinkTypeEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 import java.time.LocalDate;
@@ -50,7 +50,7 @@ public class ContactLinkRepositoryTest {
     private ContactEntity contact;
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactLinkFetchByContactEntity() throws Exception
     {
         System.out.println("testContactLinkFetchByContact: START");
@@ -74,7 +74,7 @@ public class ContactLinkRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactLinkFetchByContactEntityId() throws Exception
     {
         System.out.println("testContactLinkFetchByContact: START");
@@ -96,7 +96,7 @@ public class ContactLinkRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testCreate() throws Exception
     {
         System.out.println("testCreate: START");
@@ -124,7 +124,7 @@ public class ContactLinkRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactRetrieve()
     {
         System.out.println("testContactRetrieve: START");
@@ -150,7 +150,7 @@ public class ContactLinkRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactRetrieveById()
     {
         System.out.println("testContactRetrieveById: START");
@@ -243,7 +243,7 @@ public class ContactLinkRepositoryTest {
     */
 
     // @Test
-    //   @Transactional
+    //   @TestTransaction
     public void testContactUpdate()
     {
         System.out.println("testContactUpdate: START");
@@ -278,7 +278,7 @@ public class ContactLinkRepositoryTest {
 // contactLink.setUsername(updateUsername);
 // ***************************************************************
         System.out.println("testContactUpdate: START: CREATE");
-        contactLinkRepository.persist(contactLink);
+        // contactLinkRepository.persist(contactLink);
         assertNotNull(contactLink);
 // assertEquals(contactLink.getCity(),updateCity);
 // assertEquals(contactLink.getFirstName(),updateFirstName);

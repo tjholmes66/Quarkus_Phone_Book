@@ -6,18 +6,19 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 
 import com.tomholmes.opensource.phonebook.model.PhoneTypeEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
 public class PhoneTypeRepositoryTest {
+
     @Inject
     private PhoneTypeRepository phoneTypeRepository;
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testPhoneTypeSave()
     {
         System.out.println("testPhoneTypeSave: START");
@@ -27,7 +28,7 @@ public class PhoneTypeRepositoryTest {
         String phoneTypeDescription = "Test Description";
         // =================================================================================
         PhoneTypeEntity phoneType = new PhoneTypeEntity();
-        phoneType.setId(1L);
+        // phoneType.setId(1L);
         phoneType.setActive(phoneActive);
         phoneType.setDescription(phoneTypeDescription);
         System.out.println("testPhoneTypeSave: " + phoneTypeName + " " + phoneTypeDescription);
@@ -40,7 +41,7 @@ public class PhoneTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testPhoneTypeUpdate()
     {
         System.out.println("testPhoneTypeUpdate: START");
@@ -49,23 +50,22 @@ public class PhoneTypeRepositoryTest {
         boolean phoneActive = true;
         String phoneTypeDescription = "Test Description Update";
         // =================================================================================
-        PhoneTypeEntity phoneType = new PhoneTypeEntity();
-        phoneType.setId(1L);
+        PhoneTypeEntity phoneType = phoneTypeRepository.findById(1L);
         phoneType.setActive(phoneActive);
         phoneType.setDescription(phoneTypeDescription);
         System.out.println("testPhoneTypeUpdate: " + phoneTypeName + " " + phoneTypeDescription);
         // ***************************************************************
-        System.out.println("testPhoneTypeUpdate: START: CREATE");
+        System.out.println("testPhoneTypeUpdate: START: UPDATE");
         phoneTypeRepository.persist(phoneType);
         assertNotNull(phoneType);
         assertEquals(phoneActive, phoneType.getActive());
         assertEquals(phoneTypeDescription, phoneType.getDescription());
-        System.out.println("testPhoneTypeUpdate: FINISH: CREATE");
+        System.out.println("testPhoneTypeUpdate: FINISH: UPDATE");
         // =================================================================================
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testPhoneTypeRetrieve()
     {
         System.out.println("testPhoneTypeRetrieve: START");
@@ -73,7 +73,7 @@ public class PhoneTypeRepositoryTest {
         // =================================================================================
         // ***************************************************************
         System.out.println("testPhoneTypeRetrieve: START: CREATE");
-        List<PhoneTypeEntity> phoneTypes = (List<PhoneTypeEntity>) phoneTypeRepository.findAll();
+        List<PhoneTypeEntity> phoneTypes = (List<PhoneTypeEntity>) phoneTypeRepository.findAll().list();
         assertNotNull(phoneTypes);
         for (PhoneTypeEntity phoneType : phoneTypes)
         {
@@ -87,13 +87,11 @@ public class PhoneTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testPhoneTypeRetrieveById()
     {
         System.out.println("testPhoneTypeRetrieveById: START");
         // =================================================================================
-        // =================================================================================
-        // ***************************************************************
         System.out.println("testPhoneTypeRetrieveById: START: CREATE");
         PhoneTypeEntity phoneType = phoneTypeRepository.findById(1L);
         assertNotNull(phoneType.getId());
@@ -105,7 +103,7 @@ public class PhoneTypeRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testPhoneTypeDelete()
     {
         System.out.println("testPhoneTypeDelete: START");

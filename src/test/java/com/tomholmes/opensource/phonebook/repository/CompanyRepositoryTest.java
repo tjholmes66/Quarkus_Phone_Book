@@ -5,9 +5,9 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import java.util.List;
 
 import com.tomholmes.opensource.phonebook.model.CompanyEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
@@ -17,7 +17,7 @@ public class CompanyRepositoryTest
     private CompanyRepository companyRepository;
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testFindById()
     {
         long companyId = 1;
@@ -26,7 +26,7 @@ public class CompanyRepositoryTest
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testFindByCode()
     {
         String companyCode = "IBM";
@@ -35,7 +35,7 @@ public class CompanyRepositoryTest
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testFindAll_Entity()
     {
         List<CompanyEntity> companyEntityList = companyRepository.findAll().list();

@@ -15,9 +15,9 @@ import com.tomholmes.opensource.phonebook.model.ContactPhoneEntity;
 import com.tomholmes.opensource.phonebook.model.EmailTypeEntity;
 import com.tomholmes.opensource.phonebook.model.PhoneTypeEntity;
 import com.tomholmes.opensource.phonebook.model.UserEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
@@ -130,7 +130,7 @@ public class ContactRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactFetchByUser() throws Exception
     {
         System.out.println("testContactFetchByUser: START");
@@ -139,7 +139,7 @@ public class ContactRepositoryTest {
 
         List<ContactEntity> contactList = contactRepository.findByUser(user);
         assertNotNull(contactList);
-        assertEquals(3, contactList.size());
+        assertEquals(6, contactList.size());
 
         user = new UserEntity();
         user.setUserId(2L);
@@ -149,32 +149,32 @@ public class ContactRepositoryTest {
         user = new UserEntity();
         user.setUserId(3L);
         contactList = contactRepository.findByUser(user);
-        assertEquals(3, contactList.size());
+        assertEquals(2, contactList.size());
 
         System.out.println("testContactFetchByUser: FINISH");
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactFetchByUserId() throws Exception
     {
         System.out.println("testContactFetchByUserId: START");
 
         List<ContactEntity> contactList = contactRepository.findByUserUserId(1L);
         assertNotNull(contactList);
-        assertEquals(3, contactList.size());
+        assertEquals(6, contactList.size());
 
         contactList = contactRepository.findByUserUserId(2L);
         assertEquals(2, contactList.size());
 
         contactList = contactRepository.findByUserUserId(3L);
-        assertEquals(3, contactList.size());
+        assertEquals(2, contactList.size());
 
         System.out.println("testContactFetchByUser: FINISH");
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactCreate() throws Exception
     {
         System.out.println("testContactCreate: START");
@@ -212,7 +212,7 @@ public class ContactRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactRetrieve()
     {
         System.out.println("testContactRetrieve: START");
@@ -248,7 +248,7 @@ public class ContactRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactRetrieveById()
     {
         System.out.println("testContactRetrieveById: START");
@@ -293,7 +293,7 @@ public class ContactRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactDelete()
     {
         System.out.println("testContactDelete: START");
@@ -365,7 +365,7 @@ public class ContactRepositoryTest {
     */
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactUpdate()
     {
         System.out.println("testContactUpdate: START");

@@ -16,4 +16,9 @@ public class CompanyRepository implements PanacheRepository<CompanyEntity>
     public List<CompanyEntity> findByCompanyCode(String companyCode) {
         return find("companyCode", companyCode).list();
     }
+
+    public CompanyEntity create(CompanyEntity entity) {
+        persistAndFlush(entity);
+        return entity;
+    }
 }

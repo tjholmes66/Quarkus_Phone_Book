@@ -10,9 +10,9 @@ import java.util.List;
 import com.tomholmes.opensource.phonebook.model.ContactEntity;
 import com.tomholmes.opensource.phonebook.model.ContactPhoneEntity;
 import com.tomholmes.opensource.phonebook.model.PhoneTypeEntity;
+import io.quarkus.test.TestTransaction;
 import io.quarkus.test.junit.QuarkusTest;
 import jakarta.inject.Inject;
-import jakarta.transaction.Transactional;
 import org.junit.jupiter.api.Test;
 
 @QuarkusTest
@@ -47,7 +47,7 @@ public class ContactPhoneRepositoryTest {
     private ContactEntity contact;
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactPhoneFetchByContact() throws Exception
     {
         System.out.println("testContactPhoneFetchByContact: START");
@@ -71,7 +71,7 @@ public class ContactPhoneRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testContactPhoneFetchByContactEntityId() throws Exception
     {
         System.out.println("testContactPhoneFetchByContact: START");
@@ -93,7 +93,7 @@ public class ContactPhoneRepositoryTest {
     }
 
     @Test
-    @Transactional
+    @TestTransaction
     public void testCreate() throws Exception
     {
         System.out.println("testCreate: START");

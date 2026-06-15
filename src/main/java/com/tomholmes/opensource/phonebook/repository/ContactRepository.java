@@ -11,11 +11,11 @@ import jakarta.enterprise.context.ApplicationScoped;
 public class ContactRepository implements PanacheRepository<ContactEntity>
 {
 
-    List<ContactEntity> findByUser(UserEntity user) {
+    public List<ContactEntity> findByUser(UserEntity user) {
         return find("user", user).list();
     }
 
-    List<ContactEntity> findByUserUserId(Long userId) {
+    public List<ContactEntity> findByUserUserId(Long userId) {
         return find("user.userId", userId).list();
     }
 

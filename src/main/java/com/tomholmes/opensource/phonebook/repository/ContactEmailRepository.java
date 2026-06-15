@@ -12,11 +12,11 @@ import java.util.List;
 public class ContactEmailRepository implements PanacheRepository<ContactEmailEntity>
 {
 
-    List<ContactEmailEntity> findByContact(ContactEntity contact) {
+    public List<ContactEmailEntity> findByContact(ContactEntity contact) {
         return find("contact", contact).list();
     }
 
-    List<ContactEmailEntity> findByContactContactId(Long contactId) {
+    public List<ContactEmailEntity> findByContactContactId(Long contactId) {
         return find("contact.contactId", contactId).list();
     }
 }

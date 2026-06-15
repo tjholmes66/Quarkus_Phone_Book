@@ -66,6 +66,19 @@
             <artifactId>quarkus-junit</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- Mapstruct -->
+        <dependency>
+            <groupId>io.quarkiverse.mapstruct</groupId>
+            <artifactId>quarkus-mapstruct</artifactId>
+            <version>1.1.0</version> <!-- Use the latest version compatible with your Quarkus version -->
+        </dependency>
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.6.3</version>
+        </dependency>
+
     </dependencies>
 
     <build>
