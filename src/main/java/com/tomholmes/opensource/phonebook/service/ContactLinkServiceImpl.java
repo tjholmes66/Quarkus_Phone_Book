@@ -8,7 +8,6 @@ import jakarta.transaction.Transactional;
 
 import java.util.List;
 
-@Transactional
 @ApplicationScoped
 public class ContactLinkServiceImpl implements ContactLinkService
 {
@@ -20,6 +19,7 @@ public class ContactLinkServiceImpl implements ContactLinkService
     }
 
     @Override
+    @Transactional
     public List<ContactLinkEntity> getAllLinksByContactId(long contactId)
     {
         ContactEntity contact = new ContactEntity();
@@ -29,6 +29,7 @@ public class ContactLinkServiceImpl implements ContactLinkService
     }
 
     @Override
+    @Transactional
     public List<ContactLinkEntity> getAllLinksByContactId(ContactEntity contactEntity)
     {
         List<ContactLinkEntity> contactLinkList = contactLinkDao.findByContact(contactEntity);
@@ -36,23 +37,27 @@ public class ContactLinkServiceImpl implements ContactLinkService
     }
 
     @Override
+    @Transactional
     public ContactLinkEntity createContactLink(ContactLinkEntity contactLink) {
         contactLinkDao.persistAndFlush(contactLink);
         return contactLink;
     }
 
     @Override
+    @Transactional
     public ContactLinkEntity updateContactLink(ContactLinkEntity contactLink) {
         contactLinkDao.persistAndFlush(contactLink);
         return contactLink;
     }
 
     @Override
+    @Transactional
     public void deleteContactLink(ContactLinkEntity contactLink) {
         contactLinkDao.delete(contactLink);
     }
 
     @Override
+    @Transactional
     public void deleteContactLinkById(Long contactLinkId)
     {
         ContactLinkEntity contactLinkEntity = contactLinkDao.findById(contactLinkId);
@@ -60,6 +65,7 @@ public class ContactLinkServiceImpl implements ContactLinkService
     }
     
     @Override
+    @Transactional
     public ContactLinkEntity getLinkContactById(long linkId)
     {
         ContactLinkEntity contactLinkEntity = contactLinkDao.findById(linkId);

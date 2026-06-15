@@ -1,9 +1,12 @@
 package com.tomholmes.opensource.phonebook.dto;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 @SuppressWarnings("serial")
+@ApplicationScoped
 public class ContactPhoneDTO  implements Serializable
 {
     private Long phoneId;

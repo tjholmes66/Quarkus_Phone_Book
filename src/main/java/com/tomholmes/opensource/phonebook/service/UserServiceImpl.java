@@ -7,7 +7,6 @@ import jakarta.transaction.Transactional;
 
 import java.util.List;
 
-@Transactional
 @ApplicationScoped
 public class UserServiceImpl implements UserService
 {
@@ -19,6 +18,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Transactional
     public List<UserEntity> getAllUsers()
     {
         List<UserEntity> userList = (List<UserEntity>) userDao.findAll();
@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Transactional
     public UserEntity getUserById(long userId)
     {
         UserEntity userEntity = userDao.findById(userId);
@@ -33,6 +34,7 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Transactional
     public UserEntity add(UserEntity newUser)
     {
         userDao.persistAndFlush(newUser);
@@ -40,18 +42,21 @@ public class UserServiceImpl implements UserService
     }
 
     @Override
+    @Transactional
     public void remove(UserEntity userEntity)
     {
         userDao.deleteById(userEntity.getUserId());
     }
 
     @Override
+    @Transactional
     public void remove(long userId)
     {
         userDao.deleteById(userId);
     }
 
     @Override
+    @Transactional
     public UserEntity update(UserEntity newUser)
     {
         userDao.persistAndFlush(newUser);

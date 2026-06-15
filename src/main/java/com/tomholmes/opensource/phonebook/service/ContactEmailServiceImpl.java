@@ -8,8 +8,6 @@ import jakarta.transaction.Transactional;
 
 import java.util.List;
 
-
-@Transactional
 @ApplicationScoped
 public class ContactEmailServiceImpl implements ContactEmailService
 {
@@ -21,6 +19,7 @@ public class ContactEmailServiceImpl implements ContactEmailService
     }
 
     @Override
+    @Transactional
     public List<ContactEmailEntity> getAllEmailsByContactId(long contactId)
     {
         ContactEntity contact = new ContactEntity();
@@ -30,6 +29,7 @@ public class ContactEmailServiceImpl implements ContactEmailService
     }
 
     @Override
+    @Transactional
     public List<ContactEmailEntity> getAllEmailsByContactId(ContactEntity contactEntity)
     {
         List<ContactEmailEntity> contactEmailList = contactEmailDao.findByContact(contactEntity);
@@ -37,23 +37,27 @@ public class ContactEmailServiceImpl implements ContactEmailService
     }
 
     @Override
+    @Transactional
     public ContactEmailEntity createContactEmail(ContactEmailEntity contactEmail) {
         contactEmailDao.persistAndFlush(contactEmail);
         return contactEmail;
     }
 
     @Override
+    @Transactional
     public ContactEmailEntity updateContactEmail(ContactEmailEntity contactEmail) {
         contactEmailDao.persistAndFlush(contactEmail);
         return contactEmail;
     }
 
     @Override
+    @Transactional
     public void deleteContactEmail(ContactEmailEntity contactEmail) {
         contactEmailDao.delete(contactEmail);
     }
 
     @Override
+    @Transactional
     public void deleteContactEmailById(Long contactEmailId)
     {
         ContactEmailEntity contactEmailEntity = contactEmailDao.findById(contactEmailId);
@@ -61,6 +65,7 @@ public class ContactEmailServiceImpl implements ContactEmailService
     }
 
     @Override
+    @Transactional
     public ContactEmailEntity getEmailContactById(long emailId)
     {
         ContactEmailEntity contactEmailEntity = contactEmailDao.findById(emailId);

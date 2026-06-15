@@ -9,7 +9,6 @@ import jakarta.transaction.Transactional;
 
 import java.util.List;
 
-@Transactional
 @ApplicationScoped
 public class LoginServiceImpl implements LoginService
 {
@@ -17,6 +16,7 @@ public class LoginServiceImpl implements LoginService
     private UserRepository userDao;
 
     @Override
+    @Transactional
     public UserEntity login(String username, String password)
     {
         List<UserEntity> userEntitys = userDao.findUserByUsernameAndPassword(username, password);
@@ -29,6 +29,7 @@ public class LoginServiceImpl implements LoginService
     }
 
     @Override
+    @Transactional
     public UserEntity login(LoginDTO loginDto)
     {
         String username = loginDto.getUsername();
@@ -43,6 +44,7 @@ public class LoginServiceImpl implements LoginService
     }
 
     @Override
+    @Transactional
     public UserEntity loginByEmail(String email)
     {
         List<UserEntity> userEntitys = userDao.findUserByEmail(email);
@@ -55,6 +57,7 @@ public class LoginServiceImpl implements LoginService
     }
 
     @Override
+    @Transactional
     public UserEntity loginByUsername(String username)
     {
         List<UserEntity> userEntitys = userDao.findUserByUsername(username);

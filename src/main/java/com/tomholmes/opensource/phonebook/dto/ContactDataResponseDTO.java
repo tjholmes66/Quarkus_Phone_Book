@@ -1,9 +1,12 @@
 package com.tomholmes.opensource.phonebook.dto;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.io.Serializable;
 import java.util.List;
 
 @SuppressWarnings("serial")
+@ApplicationScoped
 public class ContactDataResponseDTO implements Serializable
 {
     List<ContactEmailDTO> emailList;

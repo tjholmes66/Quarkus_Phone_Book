@@ -2,12 +2,14 @@ package com.tomholmes.opensource.phonebook.dto;
 
 import com.tomholmes.opensource.phonebook.model.ContactEntity;
 import com.tomholmes.opensource.phonebook.model.LinkTypeEntity;
+import jakarta.enterprise.context.ApplicationScoped;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
 
 @SuppressWarnings("serial")
+@ApplicationScoped
 public class ContactLinkDTO implements Serializable
 {
     private Long linkId;

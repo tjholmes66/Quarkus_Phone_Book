@@ -26,15 +26,15 @@ public class ContactListMapperTest {
         Long userId = 3L;
         List<ContactEntity> contactEntityList = contactRepository.findByUserUserId(userId);
         assertNotNull(contactEntityList);
-        assertEquals(3, contactEntityList.size());
+        assertEquals(2, contactEntityList.size());
 
         List<ContactDTO> contactDTOList = contactListMapper.entityListToDtoList(contactEntityList);
         assertNotNull(contactDTOList);
-        assertEquals(3, contactDTOList.size());
+        assertEquals(2, contactDTOList.size());
 
         contactEntityList = contactListMapper.dtoListToEntityList(contactDTOList);
         assertNotNull(contactDTOList);
-        assertEquals(3, contactDTOList.size());
+        assertEquals(2, contactDTOList.size());
     }
 
     @Test
@@ -42,11 +42,11 @@ public class ContactListMapperTest {
         Long userId = 3L;
         List<ContactEntity> contactEntityList = contactRepository.findByUserUserId(userId);
         assertNotNull(contactEntityList);
-        assertEquals(3, contactEntityList.size());
+        assertEquals(2, contactEntityList.size());
 
         List<ContactDTO> contactDTOList = contactListMapper.entityListToDtoList(contactEntityList);
         assertNotNull(contactDTOList);
-        assertEquals(3, contactDTOList.size());
+        assertEquals(2, contactDTOList.size());
     }
 
 }

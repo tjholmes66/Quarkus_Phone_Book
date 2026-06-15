@@ -185,7 +185,7 @@ public class ContactLinkServiceImplTest
     public void testFetchById() throws Exception
     {
         System.out.println("testFetchById: START");
-        long linkId = 4;
+        Long linkId = 2L;
         // ==================================================
         ContactLinkEntity contactLink = service.getLinkContactById(linkId);
         System.out.println("testFetchByContactExample: contactLink: id=" + contactLink.getLinkId());

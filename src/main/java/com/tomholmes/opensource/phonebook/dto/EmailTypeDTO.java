@@ -1,7 +1,10 @@
 package com.tomholmes.opensource.phonebook.dto;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.io.Serializable;
 
+@ApplicationScoped
 public class EmailTypeDTO  implements Serializable
 {
     private Long id;

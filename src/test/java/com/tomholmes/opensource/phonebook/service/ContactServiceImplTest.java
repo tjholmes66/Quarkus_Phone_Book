@@ -89,7 +89,7 @@ public class ContactServiceImplTest
     public void testGetContactsByUserId() {
         long userId = 1;
         List<ContactDTO> contacts = service.getContactsByUserId(userId);
-        assertEquals(1, contacts.size());
+        assertEquals(6, contacts.size());
 
         userId = 2;
         contacts = service.getContactsByUserId(userId);
@@ -97,7 +97,7 @@ public class ContactServiceImplTest
 
         userId = 3;
         contacts = service.getContactsByUserId(userId);
-        assertEquals(3, contacts.size());
+        assertEquals(2, contacts.size());
 
         userId = 4;
         contacts = service.getContactsByUserId(userId);

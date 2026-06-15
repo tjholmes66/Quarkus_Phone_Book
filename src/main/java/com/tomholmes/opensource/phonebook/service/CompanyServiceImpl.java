@@ -10,7 +10,6 @@ import jakarta.transaction.Transactional;
 
 import java.util.List;
 
-@Transactional
 @ApplicationScoped
 public class CompanyServiceImpl implements CompanyService
 {
@@ -28,6 +27,7 @@ public class CompanyServiceImpl implements CompanyService
     // CREATE ==============================================================================
 
     @Override
+    @Transactional
     public CompanyEntity ceateNewCompany(CompanyEntity company)
     {
         companyRepo.persist(company);
@@ -35,6 +35,7 @@ public class CompanyServiceImpl implements CompanyService
     }
 
     @Override
+    @Transactional
     public CompanyEntity add(CompanyEntity company)
     {
         companyRepo.persist(company);
@@ -44,6 +45,7 @@ public class CompanyServiceImpl implements CompanyService
     // RETRIEVE ============================================================================
 
     @Override
+    @Transactional
     public CompanyEntity findById(long companyId)
     {
         CompanyEntity companyEntity = companyRepo.findById(companyId);
@@ -51,6 +53,7 @@ public class CompanyServiceImpl implements CompanyService
     }
 
     @Override
+    @Transactional
     public CompanyDTO findDtoById(long companyId)
     {
         CompanyEntity companyEntity = companyRepo.findById(companyId);
@@ -59,12 +62,14 @@ public class CompanyServiceImpl implements CompanyService
     }
 
     @Override
+    @Transactional
     public List<CompanyEntity> findAllCompanies()
     {
         return companyRepo.findAll().list();
     }
 
     @Override
+    @Transactional
     public List<CompanyDTO> getAllCompanys()
     {
         List<CompanyEntity> companyEntityList = companyRepo.findAll().list();
@@ -73,6 +78,7 @@ public class CompanyServiceImpl implements CompanyService
     }
 
     @Override
+    @Transactional
     public CompanyEntity getCompanyById(long companyId)
     {
         CompanyEntity companyEntity = companyRepo.findById(companyId);
@@ -82,6 +88,7 @@ public class CompanyServiceImpl implements CompanyService
     // UPDATE ==============================================================================
 
     @Override
+    @Transactional
     public CompanyEntity save(CompanyEntity companyEntity)
     {
         companyRepo.persistAndFlush(companyEntity);
@@ -89,6 +96,7 @@ public class CompanyServiceImpl implements CompanyService
     }
 
     @Override
+    @Transactional
     public CompanyEntity update(CompanyEntity companyEntity)
     {
         companyRepo.persistAndFlush(companyEntity);
@@ -98,12 +106,14 @@ public class CompanyServiceImpl implements CompanyService
     // DELETE ==============================================================================
 
     @Override
+    @Transactional
     public void deleteById(long companyId)
     {
         companyRepo.deleteById(companyId);
     }
 
     @Override
+    @Transactional
     public void remove(long companyId)
     {
         companyRepo.deleteById(companyId);

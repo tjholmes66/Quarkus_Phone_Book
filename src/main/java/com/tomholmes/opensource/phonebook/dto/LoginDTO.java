@@ -1,8 +1,11 @@
 package com.tomholmes.opensource.phonebook.dto;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.io.Serializable;
 
 @SuppressWarnings("serial")
+@ApplicationScoped
 public class LoginDTO implements Serializable
 {
     private String username;

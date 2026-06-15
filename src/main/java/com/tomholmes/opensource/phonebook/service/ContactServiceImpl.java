@@ -23,7 +23,6 @@ import jakarta.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@Transactional
 @ApplicationScoped
 public class ContactServiceImpl implements ContactService
 {
@@ -60,6 +59,7 @@ public class ContactServiceImpl implements ContactService
     }
 
     @Override
+    @Transactional
     public List<ContactEntity> getAllContacts()
     {
         List<ContactEntity> contactList = contactDao.findAll().list();
@@ -67,6 +67,7 @@ public class ContactServiceImpl implements ContactService
     }
 
     @Override
+    @Transactional
     public List<ContactDTO> getContactsByUserId(long userId)
     {
         List<ContactDTO> contactDTOList = new ArrayList<ContactDTO>();
@@ -76,6 +77,7 @@ public class ContactServiceImpl implements ContactService
     }
 
     @Override
+    @Transactional
     public ContactEntity getContactById(long contactId)
     {
         ContactEntity contactEntity = contactDao.findById(contactId);
@@ -83,6 +85,7 @@ public class ContactServiceImpl implements ContactService
     }
 
     @Override
+    @Transactional
     public ContactEntity add(ContactEntity newContact)
     {
         contactDao.persistAndFlush(newContact);
@@ -90,6 +93,7 @@ public class ContactServiceImpl implements ContactService
     }
 
     @Override
+    @Transactional
     public ContactEntity update(ContactEntity newContact)
     {
         contactDao.persistAndFlush(newContact);
@@ -97,6 +101,7 @@ public class ContactServiceImpl implements ContactService
     }
 
     @Override
+    @Transactional
     public void remove(long contactId)
     {
         System.out.println("remove: contactId=" + contactId);
@@ -104,6 +109,7 @@ public class ContactServiceImpl implements ContactService
     }
 
     @Override
+    @Transactional
     public ContactDataResponseDTO getContactDataById(long contactId) {
         System.out.println("getContactDataById: contactId=" + contactId);
         ContactDataResponseDTO contactDataResponseDTO = new ContactDataResponseDTO();

@@ -1,9 +1,12 @@
 package com.tomholmes.opensource.phonebook.dto;
 
+import jakarta.enterprise.context.ApplicationScoped;
+
 import java.io.Serializable;
 import java.time.LocalDate;
 
 @SuppressWarnings("serial")
+@ApplicationScoped
 public class UserDTO  implements Serializable
 {
     private Long userId;
