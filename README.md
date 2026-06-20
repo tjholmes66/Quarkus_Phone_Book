@@ -22,6 +22,32 @@ I created this Quarkus App with IntelliJ IDEA, and I started moving over the Hib
 
 If I can get through all of this, and I expect I will have a lot of it done soon, then this shows my level of commitment to learning new technologies, and adding yet another tool to my toolbox.   And it will find a nice mention  on my updated resume.    I may not have the professional experience using Quarkus, but have a working app as a demo to show my work should help out a bit ... at least that's my hope!
 
+## Update June 20, 2026
+
+Following along with my roadmap, I now have the following done:
+- The Hibernate Entities were ported over successfully
+- The Repository code was brought over and converted to Quarkus native Panache Repositories
+- Integration Tests for the Repository code were created and using @QuarkusTest.  Using @TestTransaction we rollback any database changes.
+- DTO's from the old application were moved over and removed any Lombok code, and made this code Quarkus compatible.
+- MapStruct mapper classes were moved over and modified to run in a native Quarkus environment.   This involved adding some new MapStruct/Quarkus libraries into the pom.xml file.
+- Integration testing for MapStruct was also brought over and made to run within this Native Quarkus environment.
+- The CRUD Business Logic (Services) were moved over and using @ApplicationScope we ported this over to native Quarkus code.
+- Integration Tests for the Business Logic (Services) code were created and using @QuarkusTest.  Using @TestTransaction we rollback any database changes.
+- The API REST Controllers were ported from the old SpringBoot app to the new Quarkus app.  Testing with Bruno, they seem to work fine.
+
+At this point we are here and working on this particular piece of work.
+In the process of writing Integration Tests with the 'rest-assured' library, I found that even with @TestTransaction changes to the database do not get rolled-back.
+The reason we call these Integration Testing is because the actual API Logic is called.  This should only check to make sure we have valid data before we call the Business Logic Services.
+Once the real Business Logic Service is called,NOT mocked, we have every method in the Business Logic with a @Transaction just like we do on the SpringBoot side.
+This assures us that if any errors happen, all the objects, not just the database changes, all get rolled back.
+So, continuing on with the Business Logic Service, we call the real Repository code which inserts, updates, or deletes data from the database.
+But within Quarkus, the rest-assured library creates a new thread, and that is not linked to the Transaction within the Business Service, and as a result, database changes do not get rolled back.
+
+The idea is that, for each and every test, the database starts a certain way.   Tests should be idempotent, so we can run them many times.  
+Each time a test is finished, the database should be returned to the state it was before, so the next test can be run without changes from the previous test still existing.
+There are a few solutions to this which I am looking into.   It may be, that at the end of every test, we do a cleanup our self MANUALLY in order to assure the database is reset.
+This question has been around for 5-6 years and there doesn't seem to be any good solution to fixing this issue.
+
 ## Running the application in dev mode
 
 You can run your application in dev mode that enables live coding using:
